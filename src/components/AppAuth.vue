@@ -173,7 +173,6 @@
 <script>
 import { mapState, mapWritableState } from 'pinia'
 import useModalStore from '@/stores/modal'
-import { ErrorMessage } from 'vee-validate'
 
 export default {
   name: 'AppAuth',
