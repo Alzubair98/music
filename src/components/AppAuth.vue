@@ -183,9 +183,11 @@
                 value="1"
                 class="w-4 h-4 float-left -ml-6 mt-1 rounded"
               />
-              <ErrorMessage class="text-red-600" name="tos" />
+
               <label class="inline-block">Accept terms of service</label>
+              <ErrorMessage class="text-red-600" name="tos" />
             </div>
+
             <button
               type="submit"
               class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700"
