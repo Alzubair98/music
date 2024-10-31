@@ -93,6 +93,7 @@
             v-show="tab === 'register'"
             :validation-schema="schema"
             @submit="register"
+            :initial-values="userData"
           >
             <!-- Name -->
             <div class="mb-3">
@@ -215,8 +216,12 @@ export default {
         country: 'required|excluded:Antarctica',
         tos: 'required',
       },
+      userData: {
+        country: 'USA',
+      },
     }
   },
+
   computed: {
     ...mapState(useModalStore, ['hiddenClass']),
     ...mapWritableState(useModalStore, {
