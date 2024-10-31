@@ -134,7 +134,17 @@
                 name="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password"
-              />
+                :bails="false"
+                v-slot="{ field, errors }"
+                ><input
+                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+                  placeholder="Password"
+                  v-bind="field"
+                />
+                <div class="text-red-600" v-for="error in errors" :key="error">
+                  {{ error }}
+                </div></vee-field
+              >
               <ErrorMessage class="text-red-600" name="password" />
             </div>
             <!-- Confirm Password -->
@@ -200,7 +210,7 @@ export default {
         name: 'required|min:2|max:100|alpha_spaces',
         email: 'required|min:11|max:100|email',
         age: 'required|min_value:16|max_value:80',
-        password: 'required|min:3|max:100|',
+        password: 'required|min:9|max:100|excluded:password',
         confirm_password: 'required|confirmed:@password',
         country: 'required|excluded:Antarctica',
         tos: 'required',
