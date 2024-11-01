@@ -64,9 +64,8 @@
           <!-- Login Form -->
           <vee-form
             v-show="tab === 'login'"
-            :validation-schema="schema"
-            @submit="login"
-            :initial-values="userData"
+            :validation-schema="login_schema"
+            @submit="loginin"
           >
             <!-- Email -->
             <div class="mb-3">
@@ -224,7 +223,6 @@
 <script>
 import { mapState, mapWritableState } from 'pinia'
 import useModalStore from '@/stores/modal'
-import { ErrorMessage } from 'vee-validate'
 
 export default {
   name: 'AppAuth',
@@ -242,6 +240,10 @@ export default {
       },
       userData: {
         country: 'USA',
+      },
+      login_schema: {
+        email: 'required|email',
+        password: 'required',
       },
       reg_in_submission: false,
       reg_show_alert: false,
@@ -265,6 +267,9 @@ export default {
 
       this.reg_alert_variant = 'bg-green-500'
       this.reg_alert_msg = 'Success! Your account has been created.'
+      console.log(values)
+    },
+    loginin(values) {
       console.log(values)
     },
   },
