@@ -64,8 +64,8 @@
           <!-- Login Form -->
           <vee-form
             v-show="tab === 'login'"
-            :validation-schema="login_schema"
-            @submit="loginin"
+            :validation-schema="loginSchema"
+            @submit="login"
           >
             <!-- Email -->
             <div class="mb-3">
@@ -241,7 +241,7 @@ export default {
       userData: {
         country: 'USA',
       },
-      login_schema: {
+      loginSchema: {
         email: 'required|email',
         password: 'required',
       },
@@ -269,7 +269,7 @@ export default {
       this.reg_alert_msg = 'Success! Your account has been created.'
       console.log(values)
     },
-    loginin(values) {
+    login(values) {
       console.log(values)
     },
   },
