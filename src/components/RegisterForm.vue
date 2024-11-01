@@ -110,7 +110,7 @@
       class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700 cursor-pointer"
       :disabled="reg_in_submission"
       :class="{
-        'bg-gray-500 hover:bg-gray-500 cursor-wait': reg_in_submission,
+        'bg-gray-500 hover:bg-gray-500': reg_in_submission,
       }"
     >
       Submit
@@ -119,6 +119,8 @@
 </template>
 
 <script>
+import firebase from '@/includes/firebase'
+
 export default {
   name: 'AppAuth',
   props: ['tab'],
@@ -145,15 +147,28 @@ export default {
   },
 
   methods: {
-    register(values) {
+    async register(values) {
       this.reg_show_alert = true
       this.reg_in_submission = true
       this.reg_alert_variant = 'bg-blue-500'
       this.reg_alert_msg = 'Pleasse wait! Your account is being created.'
 
+      let userCred = null
+      try {
+        userCred = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(values.email, values.password)
+      } catch (error) {
+        this.reg_in_submission = false
+        this.reg_alert_variant = 'bg-red-500'
+        this.reg_alert_msg =
+          'An unexpected error occured. Please try again later.'
+        return
+      }
+
       this.reg_alert_variant = 'bg-green-500'
       this.reg_alert_msg = 'Success! Your account has been created.'
-      console.log(values)
+      console.log(userCred)
     },
   },
 }
