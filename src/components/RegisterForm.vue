@@ -110,7 +110,7 @@
       class="block w-full bg-purple-600 text-white py-1.5 px-3 rounded transition hover:bg-purple-700 cursor-pointer"
       :disabled="reg_in_submission"
       :class="{
-        'bg-gray-300 hover:bg-gray-300 cursor-not-allowed': reg_show_alert,
+        'bg-gray-500 hover:bg-gray-500 cursor-wait': reg_in_submission,
       }"
     >
       Submit
