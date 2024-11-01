@@ -99,7 +99,7 @@
           <!-- Registration Form -->
           <div
             class="text-white text-center font-bold p-4 rounded mb-4"
-            v-if="reg_show_alert"
+            v-if="reg_show_alert && tab === 'register'"
             :class="reg_alert_variant"
           >
             {{ reg_alert_msg }}
