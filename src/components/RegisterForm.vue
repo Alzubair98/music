@@ -77,6 +77,19 @@
       />
       <ErrorMessage class="text-red-600" name="confirm_password" />
     </div>
+
+    <!-- Singer -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Favourite Singer</label>
+      <vee-field
+        type="text"
+        name="singer"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+        placeholder="ex: Eminem"
+      />
+      <ErrorMessage class="text-red-600" name="singer" />
+    </div>
+
     <!-- Country -->
     <div class="mb-3">
       <label class="inline-block mb-2">Country</label>
@@ -119,7 +132,7 @@
 </template>
 
 <script>
-import { db, auth } from '@/includes/firebase'
+import { usersCollection, auth } from '@/includes/firebase'
 
 export default {
   name: 'AppAuth',
@@ -132,6 +145,7 @@ export default {
         age: 'required|min_value:16|max_value:80',
         password: 'required|min:9|max:100|excluded:password',
         confirm_password: 'required|confirmed:@password',
+        singer: 'required|min:5|max:100|alpha_spaces',
         country: 'required|country_excluded:Antarctica',
         tos: 'tos',
       },
@@ -162,6 +176,22 @@ export default {
       } catch (error) {
         this.reg_in_submission = false
         this.reg_alert_variant = 'bg-red-500'
+        this.reg_alert_msg =
+          'An unexpected error occured. Please try again later.'
+        return
+      }
+
+      try {
+        await usersCollection.add({
+          name: values.name,
+          email: values.email,
+          age: values.age,
+          singer: values.singer,
+          country: values.country,
+        })
+      } catch (error) {
+        this.reg_in_submission = false
+        this.reg_alert_msg = 'bg-red-500'
         this.reg_alert_msg =
           'An unexpected error occured. Please try again later.'
         return
