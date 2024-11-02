@@ -15,7 +15,7 @@
             >
           </li>
           <li v-show="userLoggedIn" @click.prevent="singout">
-            <a class="px-2 text-white" href="#">Sign Out</a>
+            <a class="px-2 text-white" href="#">Logout</a>
           </li>
           <li>
             <a class="px-2 text-white" href="#">Manage</a>
