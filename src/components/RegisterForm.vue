@@ -133,6 +133,8 @@
 
 <script>
 import { usersCollection, auth } from '@/includes/firebase'
+import { mapWritableState } from 'pinia'
+import useUserStore from '@/stores/user'
 
 export default {
   name: 'AppAuth',
@@ -158,6 +160,9 @@ export default {
       reg_alert_variant: 'bg-blue-500',
       reg_alert_msg: 'Please wait! your account is being created.',
     }
+  },
+  computed: {
+    ...mapWritableState(useUserStore, ['userLoggedIn']),
   },
 
   methods: {
@@ -197,9 +202,11 @@ export default {
         return
       }
 
+      this.userLoggedIn = true
       this.reg_alert_variant = 'bg-green-500'
       this.reg_alert_msg = 'Success! Your account has been created.'
       console.log(userCred)
+      console.log(this.userLoggedIn)
     },
   },
 }
