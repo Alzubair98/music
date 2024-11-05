@@ -60,7 +60,7 @@ export default {
 
     singOut() {
       this.userStore.singout()
-      if (this.$route.name === 'manage') {
+      if (this.$route.meta.requiresAuth) {
         this.$router.push({
           name: 'home',
         })
