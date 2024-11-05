@@ -11,14 +11,14 @@ const routes = [
   },
   {
     name: 'about',
-    alias: '/about',
+    // alias: '/about',
     path: '/about-music',
     component: AboutView,
   },
-  // {
-  //   path: '/about',
-  //   redirect: { name: 'about' },
-  // },
+  {
+    path: '/about',
+    redirect: { name: 'about' },
+  },
   {
     path: '/:catchAll(.*)*',
     redirect: { name: 'home' },
