@@ -60,9 +60,11 @@ export default {
 
     singOut() {
       this.userStore.singout()
-      this.$router.push({
-        name: 'home',
-      })
+      if (this.$route.name === 'manage') {
+        this.$router.push({
+          name: 'home',
+        })
+      }
     },
   },
 }
