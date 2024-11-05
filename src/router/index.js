@@ -27,10 +27,6 @@ const routes = [
     name: 'manage',
     path: '/manage',
     component: ManageView,
-    beforeEnter: (to, from, next) => {
-      console.log('Manage Route Guard')
-      next()
-    },
   },
 ]
 
@@ -40,8 +36,8 @@ const router = createRouter({
   linkExactActiveClass: 'text-yellow-500',
 })
 
-router.beforeEach((to, from, next) => {
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   next()
+// })
 
 export default router

@@ -20,7 +20,7 @@
             >
           </li>
           <!-- Navigation Links -->
-          <li v-if="!userLoggedIn">
+          <li v-if="!this.userLoggedIn">
             <a class="px-2 text-white" href="#" @click.prevent="toggleAuthModal"
               >Login / Register</a
             >
@@ -32,7 +32,7 @@
                 Manage
               </router-link>
             </li>
-            <li @click.prevent="singout">
+            <li @click.prevent="singOut">
               <a class="px-2 text-white" href="#">Logout</a>
             </li>
           </template>
@@ -43,21 +43,26 @@
 </template>
 
 <script>
-import { mapStores, mapActions, mapState } from 'pinia'
+import { mapStores, mapState } from 'pinia'
 import useModalStore from '@/stores/modal'
 import useUserStore from '@/stores/user'
 
 export default {
   name: 'AppHeader',
   computed: {
-    ...mapStores(useModalStore),
+    ...mapStores(useModalStore, useUserStore),
     ...mapState(useUserStore, ['userLoggedIn']),
   },
   methods: {
-    ...mapActions(useUserStore, ['singout']),
-
     toggleAuthModal() {
       this.modalStore.isOpen = !this.modalStore.isOpen
+    },
+
+    singOut() {
+      this.userStore.singout()
+      this.$router.push({
+        name: 'home',
+      })
     },
   },
 }

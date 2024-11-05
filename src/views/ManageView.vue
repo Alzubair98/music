@@ -181,7 +181,7 @@
 import useUserStore from '@/stores/user'
 
 export default {
-  name: 'manage',
+  name: 'AppManage',
   beforeRouteEnter(to, from, next) {
     const store = useUserStore()
 
