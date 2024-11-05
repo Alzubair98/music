@@ -11,8 +11,12 @@ const routes = [
   },
   {
     name: 'about',
-    path: '/about',
+    path: '/about-music',
     component: AboutView,
+  },
+  {
+    path: '/about',
+    redirect: { name: 'about' },
   },
   {
     name: 'manage',
